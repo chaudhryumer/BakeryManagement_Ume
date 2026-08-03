@@ -20,7 +20,7 @@ pipeline {
                 bat 'npm test'
             }
         }
-        stage('Deploy on vercel'){
+        stage('Deploy on vercel for remote server') {
             steps {
                 bat 'vercel --prod --token=%VERCEL_TOKEN%'
             }
