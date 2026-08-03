@@ -5,7 +5,7 @@ pipeline {
         VERCEL_TOKEN=credentials('vercel_token')
     }
     stages {
-        stage('Install Dependencies') {
+        stage('Install Dependencies of App') {
             steps {
                 bat 'npm install'
             }
