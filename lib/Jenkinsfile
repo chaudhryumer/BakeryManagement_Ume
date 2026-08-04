@@ -1,28 +1,19 @@
 pipeline {
     agent any
     environment {
-        // Define environment variables here
-        VERCEL_TOKEN=credentials('vercel_token')
+        VERCEL_TOKEN = credentials('vercel_token')
     }
     stages {
-        stage('Install Dependencies of App......') {
+        stage('Build Flutter Web') {
             steps {
-                bat 'npm install'
+                // Ensure flutter command is in Windows PATH or provide full path
+                bat 'flutter build web --release'
             }
         }
-        stage('Build created .... '){
+        stage('Deploy to Vercel') {
             steps {
-                bat 'npm run build'
-            }
-        }
-        stage('Test the App'){
-            steps {
-                bat 'npm test'
-            }
-        }
-        stage('Deploy on vercel for remote server') {
-            steps {
-                bat 'vercel --prod --token=%VERCEL_TOKEN%'
+                // Deploys the generated web bundle directly to Vercel
+                bat 'npx vercel build/web --prod --token=%VERCEL_TOKEN% --yes'
             }
         }
     }
