@@ -10,7 +10,7 @@ pipeline {
                 bat 'npm install'
             }
         }
-        stage('Build'){
+        stage('Build created '){
             steps {
                 bat 'npm run build'
             }
