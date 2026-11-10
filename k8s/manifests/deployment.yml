@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-bite
+  labels:
+    app: smart-bite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-bite
+  template:
+    metadata:
+      labels:
+        app: smart-bite
+    spec:
+      containers:
+      - name: smart-bite
+        image: chaudhryumer/smart-bite-web:v1
+        ports:
+        - containerPort: 8080
